@@ -23,29 +23,34 @@ const App = () => {
   }
 
   const numOfVotes = Math.max(...voted)
-
+  const total = voted.reduce((a,b) => a+b,0)
   const mostPopular = voted.indexOf(Math.max(...voted))
 
   const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>;
 
-  const SingleAnecdote = ({num, votes}) => {
+  const SingleAnecdote = ({text, num, votes}) => {
+    if (total < 1) {
+      return (
+      <></>
+      )
+    }
+
     return (
-      <p>{anecdotes[num]} with {votes} votes.</p>
+      <div>
+        <h2>{text}</h2>
+        <p className='anecdote'>{anecdotes[num]}</p>
+        <p className='voteCount'>{votes} votes.</p>
+      </div>
     )
   }
 
   return (
     <div id="content">
       <h1>Anecdote of the Day</h1>
-      <p id="anecdote">{anecdotes[selected]}</p>
-      <SingleAnecdote num = {randomAnecdote} />
+      <p className="anecdote">{anecdotes[selected]}</p>
       <Button handleClick={randomAnecdote} text="New Anecdote" />  
       <Button handleClick={vote} text="Vote" num={[selected]}/>
-      
-      <h2>Anecdote with the most votes</h2>
-      <SingleAnecdote num = {mostPopular} votes = {numOfVotes} />
-      
-
+      <SingleAnecdote text = "Anecdote with the most votes" num = {mostPopular} votes = {numOfVotes} />
     </div>
   )
 }

@@ -12,17 +12,44 @@ code {
     monospace;
 }
 
+*, ::after, ::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
 #content {
   width: 480px;
   margin: 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+#content button, .voteCount {
+  border-radius: .3em;
+  padding: .7em 1.4em;
+  font-size: .8em;
+  border: none;
 }
 
 #content button {
-  padding: .5rem 1.5em;
   cursor: pointer;
+  margin-bottom: 5em;
 }
 
-#anecdote {
+.anecdote {
+  flex-basis: 100%;
   font-size: .9em;
   line-height: 1.5em;
+  margin: 2em 0;
 }
+
+.voteCount {
+  float: left;
+  background: rgb(22, 126, 126);
+  color: #FFF;
+}
+
