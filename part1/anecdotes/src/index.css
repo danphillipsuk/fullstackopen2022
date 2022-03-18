@@ -21,3 +21,8 @@ code {
   padding: .5rem 1.5em;
   cursor: pointer;
 }
+
+#anecdote {
+  font-size: .9em;
+  line-height: 1.5em;
+}
