@@ -1,16 +1,17 @@
-import React from 'react'
+import React from 'react';
 import Part from './Part';
+import Exercise from './Exercise';
+
 
 const Content = ( props ) => {
   const { parts } = props;
   return (
-    <div>
       <ul>
         {parts.map(part =>
           <Part key={part.id} part={part} />
         )}
+        <Exercise parts={parts} />
       </ul>
-    </div>
   )
 }
 
