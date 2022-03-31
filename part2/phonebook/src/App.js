@@ -5,10 +5,12 @@ const App = () => {
 
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas',
-      id: 1 }
+      id: 1 },
+    { name: 'Alan',
+      id: 2 }
   ]) 
 
-  const [newName, setNewName] = useState('')
+  const [newName, setNewName] = useState('');
 
   const addPerson = (event) => {
     event.preventDefault();
@@ -16,12 +18,18 @@ const App = () => {
       name: newName,
       id: persons.length + 1
     }
+    const duplicate = persons.some(person => person.name === newName)
+    if(duplicate) {
+      alert(`${newName} already exists in phonebook.`)
+      return
+    }
     setPersons(persons.concat(personObject));
     setNewName('');
   }
 
+
+
   const handleNameChange = (event) => {
-    console.log(event.target.value)
     setNewName(event.target.value)
   }
 
