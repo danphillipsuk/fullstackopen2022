@@ -14,3 +14,17 @@
 #root {
   padding: 40px;
 }
+
+#root form label {
+  font-size: .8rem;
+}
+
+#root form input {
+  display: block;
+  padding: 10px 5px;
+  margin: 0 0 15px 0;
+}
+
+#root form button {
+  padding: 10px 30px;
+}
