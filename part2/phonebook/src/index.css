@@ -12,19 +12,57 @@
 }
 
 #root {
-  padding: 40px;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-#root form label {
+#header {
+  padding: 20px 0;
+}
+
+#root form {
+  width: 100%;
+  padding: 20px;
+  border: solid 1px rgb(204, 204, 204);
+  border-radius: 3px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.addPersonInputs {
+  width: 50%;
+}
+
+.addPersonInputs label {
+  display: block;
   font-size: .8rem;
 }
 
-#root form input {
-  display: block;
+.addPersonInputs input {
   padding: 10px 5px;
-  margin: 0 0 15px 0;
 }
 
 #root form button {
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: rgb(69, 156, 214);
+  border: transparent;
+  border-radius: 3px;
+  color: #FFF;
   padding: 10px 30px;
+}
+
+#phoneBook {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+#phoneBook li {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: solid 1px #eee;
 }
