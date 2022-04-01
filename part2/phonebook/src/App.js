@@ -8,8 +8,10 @@ const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456', id: 1 },
     { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+    { name: 'Anthony Musk', number: '39-44-5323523', id: 3 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 4 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 5 },
+    { name: 'Arnold Brent', number: '39-44-5323523', id: 6 },
   ])
 
   const [newName, setNewName] = useState('');
@@ -51,6 +53,13 @@ const App = () => {
         setNewNumber={setNewNumber}
         handleNumberChange={handleNumberChange}
       />
+
+      <div id="filter">
+        <form>
+          <label htmlFor="filterInp">Search Phonebook</label>
+          <input value={newFilter} onChange={handleFilter} id="filterInp"/>
+        </form>
+      </div>
       
       <Persons persons={peopleToShow}/>
 
@@ -60,10 +69,8 @@ const App = () => {
         handleFilter={handleFilter}
       /> */}
 
-
-      <form>
-        <input value={newFilter} onChange={handleFilter} />
-      </form>
+    
+      
       
     </div>
   )

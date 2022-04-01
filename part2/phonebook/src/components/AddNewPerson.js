@@ -27,7 +27,7 @@ const AddNewPerson = ({ persons, newName, handleNameChange, setNewName, setPerso
   }
 
   return (
-    <form onSubmit={addPerson}>
+    <form onSubmit={addPerson} id="addPerson">
       <div className="addPersonInputs">
         <label htmlFor = "name">Name</label>     
         <input 
