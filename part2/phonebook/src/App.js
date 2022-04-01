@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import People from './components/People';
 import Filter from './components/Filter';
 import AddNewPerson from './components/AddNewPerson';
+import Persons from './components/Persons';
 
 const App = () => {
 
@@ -14,30 +14,33 @@ const App = () => {
 
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
+  const [newFilter, setFilter] = useState('');
 
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);
+  const handleFilter = (event) => setFilter(event.target.value)
 
 
-  // const [newFilter, setFilter] = useState('');
-  // const [showAll, setShowAll] = useState(true);
 
-  // const handleFilter = (event) => {
-  //   setShowAll(false)
-  //   setFilter(event.target.value);
-  // }
+  let filtered;
+  let peopleToShow;
 
-  // const filteredPerson = showAll ? persons : persons.filter(person => { 
-  //   return person.name === newFilter
-  // })
+  if(newFilter.length > 0) {
+    let len = newFilter.length-1;
+    filtered = persons.filter(person => person.name[len] === newFilter[len] && person.name[len-1] === newFilter[len-1] )
+  }
 
+  if (filtered) { 
+    peopleToShow = filtered; 
+  } else { 
+    peopleToShow = persons;
+  }
 
 
 
   return (
     <div>
       <h1 id="header">Phonebook</h1>
-
       <AddNewPerson 
         persons={persons} 
         setPersons={setPersons}
@@ -48,26 +51,20 @@ const App = () => {
         setNewNumber={setNewNumber}
         handleNumberChange={handleNumberChange}
       />
+      
+      <Persons persons={peopleToShow}/>
 
-      <Filter />
+      {/* <Filter 
+        newFilter={newFilter}
+        setFilter={setFilter}
+        handleFilter={handleFilter}
+      /> */}
 
-      {/* <form>
-        <label htmlFor = "filter">Filter         
-          <input 
-            value={newFilter}
-            onChange={handleFilter} 
-            id='filter'
-          />
-        </label>
-      </form> */}
 
-    
-      <h2>Numbers</h2>
-        <ul id="phoneBook">
-          {persons.map(people => 
-            <People key={people.id} individual={people} />
-            )}
-        </ul>
+      <form>
+        <input value={newFilter} onChange={handleFilter} />
+      </form>
+      
     </div>
   )
 }

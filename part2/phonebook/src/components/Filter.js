@@ -1,7 +1,19 @@
-const Filter = () => {
+const Filter = (newFilter, setNewFilter, handleFilter) => {
   
+  const filterPhonebook = () => {
+    console.log("hello");
+  }
+
   return (
-    <h3>Filter</h3>
+    <div id="filter">
+      <h3>Filter Phonebook</h3>
+    
+        <input 
+          value={newFilter}
+          onChange={handleFilter} 
+        />
+
+    </div>
   )
 }
 

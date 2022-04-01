@@ -9,7 +9,6 @@ const AddNewPerson = ({ persons, newName, handleNameChange, setNewName, setPerso
     }
 
     const duplicateName = persons.some(person => person.name === newName)
-    const duplicateNumber = persons.some(person => person.number === newNumber)
 
     if(duplicateName) {
       alert(`${newName} already exists in phonebook.`)
@@ -17,9 +16,8 @@ const AddNewPerson = ({ persons, newName, handleNameChange, setNewName, setPerso
       return
     }
 
-    if(duplicateNumber) {
-      alert(`${newNumber} already exists in phonebook.`)
-      setNewNumber('');
+    if(newName === '' || newNumber === '') {
+      alert("Please enter a name and phone number")
       return
     }
 
