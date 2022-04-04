@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Filter from './components/Filter';
 import AddNewPerson from './components/AddNewPerson';
-import Persons from './components/Persons';
 
 const App = () => {
 
@@ -16,33 +15,16 @@ const App = () => {
 
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
-  const [newFilter, setFilter] = useState('');
+  const [newfilter, setFilter] = useState('');
 
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);
   const handleFilter = (event) => setFilter(event.target.value)
 
-
-
-  let filtered;
-  let peopleToShow;
-
-  if(newFilter.length > 0) {
-    let len = newFilter.length-1;
-    filtered = persons.filter(person => person.name[len] === newFilter[len] && person.name[len-1] === newFilter[len-1] )
-  }
-
-  if (filtered) { 
-    peopleToShow = filtered; 
-  } else { 
-    peopleToShow = persons;
-  }
-
-
-
   return (
     <div>
       <h1 id="header">Phonebook</h1>
+
       <AddNewPerson 
         persons={persons} 
         setPersons={setPersons}
@@ -54,24 +36,13 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
 
-      <div id="filter">
-        <form>
-          <label htmlFor="filterInp">Search Phonebook</label>
-          <input value={newFilter} onChange={handleFilter} id="filterInp"/>
-        </form>
-      </div>
-      
-      <Persons persons={peopleToShow}/>
-
-      {/* <Filter 
-        newFilter={newFilter}
-        setFilter={setFilter}
+      <Filter 
+        persons={persons} 
+        newfilter={newfilter}
         handleFilter={handleFilter}
-      /> */}
+        setFilter={setFilter}
+      />
 
-    
-      
-      
     </div>
   )
 }
