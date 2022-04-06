@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Filter from './components/Filter';
 import AddNewPerson from './components/AddNewPerson';
-import axios from 'axios';
+import personService from './services/persons'
 
 const App = () => {
 
@@ -10,15 +10,13 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('');
   const [newfilter, setFilter] = useState('');
 
-  const hook = () => {
-    axios
-     .get('http://localhost:3001/persons')
-     .then(response => {
-       setPersons(response.data)
-     })
-  }
-
-  useEffect(hook, [])
+  useEffect(() => {
+    personService
+      .getAll()
+      .then(initialPeople => {
+        setPersons(initialPeople)
+      })
+  }, [])
 
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);

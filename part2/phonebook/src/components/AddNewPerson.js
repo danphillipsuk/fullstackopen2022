@@ -1,11 +1,21 @@
-const AddNewPerson = ({ persons, newName, handleNameChange, setNewName, setPersons, newNumber, setNewNumber, handleNumberChange }) => {
+import personsService from '../services/persons'
 
-  const addPerson = (event) => {
+const AddNewPerson = ({ 
+    persons, 
+    newName, 
+    handleNameChange, 
+    setNewName, 
+    setPersons, 
+    newNumber, 
+    setNewNumber, 
+    handleNumberChange 
+  }) => {
+
+  const addPerson = event => {
     event.preventDefault();
     const personObject = {
       name: newName,
-      number: newNumber,
-      id: persons.length + 1
+      number: newNumber
     }
 
     const duplicateName = persons.some(person => person.name === newName)
@@ -21,9 +31,13 @@ const AddNewPerson = ({ persons, newName, handleNameChange, setNewName, setPerso
       return
     }
 
-    setPersons(persons.concat(personObject));
-    setNewName('');
-    setNewNumber('');
+    personsService
+      .create(personObject)
+      .then(returnedPerson => {
+        setPersons(persons.concat(returnedPerson));
+        setNewName('');
+        setNewNumber('');
+      })
   }
 
   return (
