@@ -39,6 +39,7 @@ const App = () => {
 
       <Filter 
         persons={persons} 
+        setPersons={setPersons}
         newfilter={newfilter}
         handleFilter={handleFilter}
         setFilter={setFilter}

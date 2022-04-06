@@ -1,5 +1,5 @@
 import Persons from "./Persons"
-const Filter = ({persons, newfilter, handleFilter}) => {
+const Filter = ({persons, newfilter, handleFilter, setPersons}) => {
 
   let filtered;
   let peopleToShow;
@@ -23,7 +23,7 @@ const Filter = ({persons, newfilter, handleFilter}) => {
           <input newfilter={newfilter} onChange={handleFilter} id="filterInp"/>
         </form>
       </div>
-      <Persons persons={peopleToShow}/>
+      <Persons persons={peopleToShow} setPersons={setPersons}/>
     </>
   )
 
