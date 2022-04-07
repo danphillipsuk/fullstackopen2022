@@ -17,14 +17,14 @@ const Countries = ({countries}) =>  {
       </ul>
     )
   } else {
-  return (
-    <ul>
-      {countries.map(country => 
-        <Country key={country.cca3} loc={country} />
-      )}
-    </ul>
-  )
-      }
+    return (
+      <ul>
+        {countries.map(country => 
+          <Country key={country.cca3} loc={country} />
+        )}
+      </ul>
+    )
+  }
 }
 
 export default Countries;
