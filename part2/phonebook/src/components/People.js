@@ -1,12 +1,12 @@
 import personService from '../services/persons'
 
-const People = ({ individual, setPersons }) => {
+const People = ({ individual, persons, setPersons }) => {
 
   const deletePerson = (event) => {
     const userId = event.target.value;
     const userName = event.target.name;
     personService
-      .deletePerson(userId, userName) 
+      .deletePerson(userId, userName, persons, setPersons) 
   }
 
   return (

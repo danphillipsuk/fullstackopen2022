@@ -3,6 +3,7 @@ import Filter from './components/Filter';
 import AddNewPerson from './components/AddNewPerson';
 import personService from './services/persons'
 
+
 const App = () => {
 
   const [persons, setPersons] = useState([]);
@@ -16,7 +17,8 @@ const App = () => {
       .then(initialPeople => {
         setPersons(initialPeople)
       })
-  }, [])
+  }, []);
+
 
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);

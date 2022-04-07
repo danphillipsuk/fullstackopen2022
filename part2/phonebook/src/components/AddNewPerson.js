@@ -18,19 +18,25 @@ const AddNewPerson = ({
       number: newNumber
     }
 
-    const duplicateName = persons.some(person => person.name === newName)
-
-    if(duplicateName) {
-      alert(`${newName} already exists in phonebook.`)
-      setNewName('');
-      return
-    }
-
     if(newName === '' || newNumber === '') {
       alert("Please enter a name and phone number")
       return
     }
 
+    const duplicateName = persons.filter(person => person.name === newName)
+
+    if (duplicateName.length > 0) {
+      const entryId = duplicateName[0].id;
+      const res = window.confirm(`${newName} already added to phonebook. Do you want to replace the old number with a new one?`)
+      if(res) {
+        personsService
+          .update(entryId, newNumber, persons, setPersons)
+      }
+      setNewName('');
+      setNewNumber('');
+      return
+    }
+  
     personsService
       .create(personObject)
       .then(returnedPerson => {
