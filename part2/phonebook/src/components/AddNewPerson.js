@@ -8,7 +8,8 @@ const AddNewPerson = ({
     setPersons, 
     newNumber, 
     setNewNumber, 
-    handleNumberChange 
+    handleNumberChange, 
+    updatePerson
   }) => {
 
   const addPerson = event => {
@@ -29,8 +30,7 @@ const AddNewPerson = ({
       const entryId = duplicateName[0].id;
       const res = window.confirm(`${newName} already added to phonebook. Do you want to replace the old number with a new one?`)
       if(res) {
-        personsService
-          .update(entryId, newNumber, persons, setPersons)
+        updatePerson(entryId, newNumber);
       }
       setNewName('');
       setNewNumber('');
