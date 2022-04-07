@@ -1,10 +1,10 @@
-const Notification = ({ message }) => {
+const ErrorNotification = ({ message }) => {
   if (message === null) {
     return null;
   }
 
   const notificationStyle = {
-    border: 'solid 3px green',
+    border: 'solid 3px red',
     padding: 20,
     borderRadius: 3,
     textAlign: 'center'
@@ -17,4 +17,4 @@ const Notification = ({ message }) => {
   )
 }
 
-export default Notification
+export default ErrorNotification

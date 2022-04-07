@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import Filter from './components/Filter';
 import AddNewPerson from './components/AddNewPerson';
-import personService from './services/persons'
-import Notification from './components/Notification'
+import personService from './services/persons';
+import Notification from './components/Notification';
+import ErrorNotification from './components/ErrorNotification';
 import axios from 'axios';
 
 
@@ -13,6 +14,8 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('');
   const [newfilter, setFilter] = useState('');
   const [message, setMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
 
   useEffect(() => {
     personService
@@ -41,6 +44,15 @@ const App = () => {
           setMessage(null)
         }, 3000)
       })
+      .catch(error => {
+        setErrorMessage(
+          `${event.target.name} has already been deleted from the phonebook`
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 3000)
+        setPersons(persons.filter(person => person.id != event.target.value)) 
+      })
     }
   }
 
@@ -66,6 +78,7 @@ const App = () => {
     <div>
       <h1 id="header">Phonebook</h1>
       <Notification message={message} />
+      <ErrorNotification message={errorMessage} />
       <AddNewPerson 
         persons={persons} 
         setPersons={setPersons}
