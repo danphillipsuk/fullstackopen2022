@@ -54,7 +54,7 @@ const App = () => {
     .then(response => {
       setPersons(persons.map(person => person.id !== id ? person : response.data));
       setMessage(
-        `has been modified from the phonebook`
+        `${entry.name}'s number has been modified.`
       )
       setTimeout(() => {
         setMessage(null)
