@@ -8,7 +8,7 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const [newCountry, setNewCountry] = useState([]);
   const [countryDetail, setCountryDetail] = useState([]);
-  // const [weather, setWeather] = useState([])
+  const [weatherDetail, setWeatherDetail] =useState([]);
 
   const hook = () => {
     axios
@@ -17,15 +17,26 @@ const App = () => {
        setCountries(response.data)
      })
   }
-
   useEffect(hook, [])
 
   const handleCountry = event => {
     setNewCountry(event.target.value);
-    setCountryDetail('')
+    setCountryDetail('');
+    setWeatherDetail('');
   };
 
   const showDetail = event => setCountryDetail(event.target.value);
+
+  const getWeather = event => {
+    const test = countries.filter(country => country.name.common === event.target.value)
+    const lat = test[0].capitalInfo.latlng[0];
+    const lon = test[0].capitalInfo.latlng[1];
+    axios
+      .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5a75251970a67885f4e3d704fe65eed0&units=metric`)
+      .then(response => {
+        setWeatherDetail(response.data)
+      })
+  }
 
   let filtered = countries.filter(country => country.name.common.includes(newCountry));
   const showCountry = countries.filter(country => country.name.common === countryDetail)
@@ -38,9 +49,18 @@ const App = () => {
         <input newcountry={newCountry} onChange={handleCountry} id="countrySearch"/>
       </form>
 
-      <Countries countries={filtered} showDetail={showDetail}/>
+      <Countries 
+        countries={filtered} 
+        showDetail={showDetail} 
+        getWeather={getWeather}
+        weatherDetail={weatherDetail}
+      />
 
-      <ShowCountry showCountry={showCountry} />
+      <ShowCountry 
+        showCountry={showCountry} 
+        getWeather={getWeather}
+        weatherDetail={weatherDetail}
+      />
 
     </div>
   )

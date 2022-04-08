@@ -1,7 +1,7 @@
 import Country from "./Country";
 import CountryDetail from './CountryDetail';
 
-const Countries = ({countries, showDetail}) =>  {
+const Countries = ({countries, showDetail, getWeather, weatherDetail }) =>  {
 
   if (countries.length > 10) {
     return (
@@ -12,7 +12,12 @@ const Countries = ({countries, showDetail}) =>  {
     return (
       <ul>
         {countries.map(country => 
-          <CountryDetail key={country.cca3} loc={country} />
+          <CountryDetail 
+            key={country.cca3} 
+            loc={country} 
+            getWeather={getWeather} 
+            weatherDetail={weatherDetail} 
+          />
         )}
       </ul>
     )

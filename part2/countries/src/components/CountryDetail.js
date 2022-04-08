@@ -1,9 +1,7 @@
 import Languages from "./Languages";
+import Weather from "./Weather";
 
-const CountryDetail = ({loc}) => {
-
-  const lat = loc.capitalInfo.latlng[0]
-  const lon = loc.capitalInfo.latlng[1]
+const CountryDetail = ({loc, getWeather, weatherDetail}) => {
 
   const dialect = Object.values(loc.languages)
 
@@ -16,6 +14,8 @@ const CountryDetail = ({loc}) => {
         { dialect.map(lang => <Languages key={lang} lang={lang} />)}
       </li>
       <li><img src={loc.flags.png} alt="flag"></img></li>
+      <button onClick={getWeather} value={loc.name.common}>Show Weather in {loc.capital}</button>
+      <Weather weatherDetail={weatherDetail} />
     </div>
   )
 }

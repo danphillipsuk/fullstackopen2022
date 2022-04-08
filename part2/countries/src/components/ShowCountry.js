@@ -1,6 +1,7 @@
 import Languages from "./Languages";
+import Weather from "./Weather";
 
-const ShowCountry = ({showCountry}) => {
+const ShowCountry = ({showCountry, getWeather,weatherDetail}) => {
 
   if(showCountry.length === 0) {
     return null
@@ -18,6 +19,8 @@ const ShowCountry = ({showCountry}) => {
       { dialect.map(lang => <Languages key={lang} lang={lang} />)}
       </li>
       <li><img src={country.flags.png} alt="country flag"></img></li>
+      <button onClick={getWeather} value={country.name.common}>Show Weather in {country.capital}</button>
+      <Weather weatherDetail={weatherDetail} />
 
 
     </ul>
