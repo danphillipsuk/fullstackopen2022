@@ -25,14 +25,19 @@ const App = () => {
     setWeatherDetail('');
   };
 
-  const showDetail = event => setCountryDetail(event.target.value);
+  const showDetail = event => { 
+    setCountryDetail(event.target.value);
+    setWeatherDetail('');
+  }
+
+  const api_key = process.env.REACT_APP_API_KEY;
 
   const getWeather = event => {
     const test = countries.filter(country => country.name.common === event.target.value)
     const lat = test[0].capitalInfo.latlng[0];
     const lon = test[0].capitalInfo.latlng[1];
     axios
-      .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5a75251970a67885f4e3d704fe65eed0&units=metric`)
+      .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`)
       .then(response => {
         setWeatherDetail(response.data)
       })
