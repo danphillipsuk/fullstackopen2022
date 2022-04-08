@@ -2,7 +2,6 @@ import React from 'react';
 import Part from './Part';
 import Exercise from './Exercise';
 
-
 const Content = ( props ) => {
   const { parts } = props;
   return (
