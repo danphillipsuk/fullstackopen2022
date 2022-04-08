@@ -2,6 +2,9 @@ import Languages from "./Languages";
 
 const CountryDetail = ({loc}) => {
 
+  const lat = loc.capitalInfo.latlng[0]
+  const lon = loc.capitalInfo.latlng[1]
+
   const dialect = Object.values(loc.languages)
 
   return (

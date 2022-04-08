@@ -1,9 +1,11 @@
-const Country = ({loc}) => {
+const Country = ({loc, showDetail}) => {
+  
   return (
-    <>
-      <p>{loc.name.common}</p>
-      <button>show</button>
-    </>
+    <div>
+      <p>{loc.name.common} 
+        <button onClick={showDetail} value={loc.name.common}>show</button>
+      </p>
+    </div>
   )
 }
 
