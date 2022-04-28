@@ -5,7 +5,7 @@ const People = ({ individual, deletePerson }) => {
       {individual.name}
       <button 
         onClick={deletePerson} 
-        value={individual.id}
+        value={individual._id}
         name={individual.name}
         >
           Delete

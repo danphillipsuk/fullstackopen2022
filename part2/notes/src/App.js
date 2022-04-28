@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import axios from 'axios'
 import Note from './components/Note'
 import Notification from './components/Notification'
 import Footer from './components/Footer'
@@ -11,11 +11,19 @@ const App = () => {
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
 
+  // useEffect(() => {
+  //   noteService
+  //     .getAll()
+  //     .then(initialNotes => {
+  //       setNotes(initialNotes)
+  //     })
+  // }, [])
+
   useEffect(() => {
-    noteService
-      .getAll()
-      .then(initialNotes => {
-        setNotes(initialNotes)
+    axios
+      .get('http://localhost:3001/api/notes')
+      .then(res => {
+        setNotes(res.data)
       })
   }, [])
 

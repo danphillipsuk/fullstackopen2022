@@ -1,5 +1,5 @@
 import Persons from "./Persons"
-const Filter = ({persons, newfilter, handleFilter, setPersons, deletePerson}) => {
+const Filter = ({persons, newfilter, handleChange, setPersons, deletePerson}) => {
 
   let filtered;
   let peopleToShow;
@@ -20,7 +20,11 @@ const Filter = ({persons, newfilter, handleFilter, setPersons, deletePerson}) =>
       <div id="filter">
         <form>
           <label htmlFor="filterInp">Search Phonebook</label>
-          <input newfilter={newfilter} onChange={handleFilter} id="filterInp"/>
+          <input 
+            newfilter={newfilter} 
+            onChange={handleChange} 
+            id="filterInp"
+          />
         </form>
       </div>
       <Persons persons={peopleToShow} setPersons={setPersons} deletePerson={deletePerson}/>

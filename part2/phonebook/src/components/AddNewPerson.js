@@ -27,13 +27,13 @@ const AddNewPerson = ({
     const duplicateName = persons.filter(person => person.name === newName)
 
     if (duplicateName.length > 0) {
-      const entryId = duplicateName[0].id;
+      const entryId = duplicateName[0]._id;
       const res = window.confirm(`${newName} already added to phonebook. Do you want to replace the old number with a new one?`)
       if(res) {
         updatePerson(entryId, newNumber);
       }
-      setNewName('');
-      setNewNumber('');
+      // setNewName('');
+      // setNewNumber('');
       return
     }
   
